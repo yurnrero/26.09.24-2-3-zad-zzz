@@ -1,0 +1,38 @@
+﻿<Window x:Class="_26._09._24_2_3_zad_zzz.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_26._09._24_2_3_zad_zzz"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <StackPanel Margin="10">
+            <!-- Поле t1 -->
+            <TextBox x:Name="t1" Width="200" Text="0" />
+
+            <!-- Поле t2 с привязкой текста к t1 -->
+            <TextBox x:Name="t2" Width="200" Text="{Binding ElementName=t1, Path=Text, Mode=TwoWay}" />
+
+            <!-- Ползунок slider1 для управления значением поля t1 -->
+            <Slider x:Name="slider1" Minimum="0" Maximum="100" Width="200" 
+                Value="{Binding ElementName=t1, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <!-- Ползунок slider2, привязанный к slider1 -->
+            <Slider x:Name="slider2" Minimum="0" Maximum="100" Width="200" 
+                Value="{Binding ElementName=slider1, Path=Value, Mode=TwoWay}" />
+
+            <!-- Поле для ввода размера шрифта -->
+            <TextBox x:Name="fontSizeInput" Width="200" Text="16" />
+
+            <!-- Ползунок для управления размером шрифта -->
+            <Slider x:Name="fontSizeSlider" Minimum="10" Maximum="50" Width="200" 
+                Value="{Binding ElementName=fontSizeInput, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <!-- Текстовый блок с привязкой размера шрифта -->
+            <TextBlock x:Name="textBlock" Text="Пример текста" 
+                   FontSize="{Binding ElementName=fontSizeSlider, Path=Value}" />
+        </StackPanel>
+    </Grid>
+</Window>
